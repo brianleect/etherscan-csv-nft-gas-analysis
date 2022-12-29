@@ -17,6 +17,9 @@ We leverage on the easily accessible .csv exports etherscan provides as the data
     - (Optional) analyze_all_blocks (Reduce noise, Set to true for all blocks else only start & end)
     - (Optional) start_block (Ignore earlier segments by setting start block)
     - (Optional) end_block (Ignore later segments by setting end block)
-3. Run `main.py`
+3. Run `main.py` , and observe output to console
 
 ![image](https://user-images.githubusercontent.com/63389110/209989720-e97ee469-14bc-4403-906b-4e7a3aa6d7ef.png)
+
+![image](https://user-images.githubusercontent.com/63389110/209989851-4d394e9c-47e8-4af6-adf4-c2c5856f5de0.png)
+![image](https://user-images.githubusercontent.com/63389110/209989889-704ea4e0-668d-4110-a0cb-fd3c2daf7863.png)
