@@ -1,0 +1,83 @@
+Price each: 0.05
+Total transactions: 1911
+Total successful transactions: 592
+Total failed transactions 1319 / Gas lost: 11.21
+Total free mints: 0
+Duration taken: 6 Blocks / 1m53s
+-------------------------
+Successful mint analysis
+Total minted in public: 1175
+-------------
+Cost analysis (Eth)
+Average 0.12995
+Median: 0.15508
+10th percentile 0.10832
+90th percentile 0.12655
+Min: 0.08607
+Max: 0.24716
+---------------
+Gas Analysis (Gwei)
+Successful tx: 592
+Average 610.28441 / 0.12995
+Median: 802.14656 / 0.15508
+10th percentile 445.19134 / 0.10832
+90th percentile 584.34754 / 0.12655
+Min: 275.32399 / 0.08607
+Max: 1505.02749 / 0.24716
+--------------------
+Block Analysis
+Total blocks: 6
+14201671
+Successful tx: 69
+Average 553.62662 / 0.12253
+Median: 490.16911 / 0.11421
+10th percentile 890.38269 / 0.16664
+90th percentile 402.07597 / 0.10267
+Min: 338.55115 / 0.09435
+Max: 1504.02481 / 0.24703
+---------------
+14201672
+Successful tx: 112
+Average 808.69978 / 0.15594
+Median: 734.69342 / 0.14624
+10th percentile 1113.98104 / 0.19593
+90th percentile 634.69847 / 0.13315
+Min: 601.60992 / 0.12881
+Max: 1505.02749 / 0.24716
+---------------
+14201673
+Successful tx: 113
+Average 553.52634 / 0.12251
+Median: 557.49186 / 0.12303
+10th percentile 601.60992 / 0.12881
+90th percentile 506.35502 / 0.11633
+Min: 275.32399 / 0.08607
+Max: 665.96099 / 0.13724
+---------------
+14201674
+Successful tx: 113
+Average 590.29369 / 0.12733
+Median: 592.58577 / 0.12763
+10th percentile 719.24086 / 0.14422
+90th percentile 506.68511 / 0.11638
+Min: 501.3416 / 0.11568
+Max: 1001.68052 / 0.18122
+---------------
+14201675
+Successful tx: 98
+Average 538.98072 / 0.12061
+Median: 501.3416 / 0.11568
+10th percentile 667.78702 / 0.13748
+90th percentile 472.26379 / 0.11187
+Min: 407.75784 / 0.10342
+Max: 1002.68321 / 0.18135
+---------------
+14201676
+Successful tx: 87
+Average 579.79293 / 0.12595
+Median: 557.49186 / 0.12303
+10th percentile 601.60992 / 0.12881
+90th percentile 537.60544 / 0.12043
+Min: 537.60544 / 0.12043
+Max: 960.56713 / 0.17583
+---------------

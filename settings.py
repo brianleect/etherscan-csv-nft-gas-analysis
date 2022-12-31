@@ -1,5 +1,5 @@
 method_name = "_public Sale Mint"
-filename = './csv_exports/lag.csv'
+filename = 'lag.csv'
 gas_consumed = 131000
 is_free_mint = False
 analyze_all_blocks = True

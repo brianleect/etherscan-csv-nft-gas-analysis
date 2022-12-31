@@ -2,6 +2,12 @@ from settings import filename, method_name, gas_consumed, analyze_all_blocks, st
 import csv
 
 
+def printLog(*args, **kwargs):
+    print(*args, **kwargs)
+    with open(f'./stats_dump/{filename}.txt', 'a') as file:
+        print(*args, **kwargs, file=file)
+
+
 def format_time(seconds):
     second_f = seconds % 60
     min_f = seconds//60
@@ -36,12 +42,12 @@ def getCost(transaction_list):
 
 
 def getStats(info_list):
-    print("Average", round(sum(info_list)/len(info_list), 5))
-    print("Median:", round(info_list[int(len(info_list)/2)], 5))
-    print("10th percentile", round(info_list[int(len(info_list)/10)], 5))
-    print("90th percentile", round(info_list[int(len(info_list)/10*9)], 5))
-    print("Min:", round(min(info_list), 5))
-    print("Max:", round(max(info_list), 5))
+    printLog("Average", round(sum(info_list)/len(info_list), 5))
+    printLog("Median:", round(info_list[int(len(info_list)/2)], 5))
+    printLog("10th percentile", round(info_list[int(len(info_list)/10)], 5))
+    printLog("90th percentile", round(info_list[int(len(info_list)/10*9)], 5))
+    printLog("Min:", round(min(info_list), 5))
+    printLog("Max:", round(max(info_list), 5))
 
 
 def gasToMintCost(gas):
@@ -56,13 +62,13 @@ def getGasStats(info_list):
     min_gas = round(min(info_list)/gas_consumed*10**9, 5)
     max_gas = round(max(info_list)/gas_consumed*10**9, 5)
 
-    print("Successful tx:", len(info_list))
-    print("Average", avg, '/', gasToMintCost(avg))
-    print("Median:", median, '/', gasToMintCost(median))
-    print("10th percentile", tenth, '/', gasToMintCost(tenth))
-    print("90th percentile", ninetyth, '/', gasToMintCost(ninetyth))
-    print("Min:", min_gas, '/', gasToMintCost(min_gas))
-    print("Max:", max_gas, '/', gasToMintCost(max_gas))
+    printLog("Successful tx:", len(info_list))
+    printLog("Average", avg, '/', gasToMintCost(avg))
+    printLog("Median:", median, '/', gasToMintCost(median))
+    printLog("10th percentile", tenth, '/', gasToMintCost(tenth))
+    printLog("90th percentile", ninetyth, '/', gasToMintCost(ninetyth))
+    printLog("Min:", min_gas, '/', gasToMintCost(min_gas))
+    printLog("Max:", max_gas, '/', gasToMintCost(max_gas))
 
 
 header_list = ['Txhash', 'Blockno', 'UnixTimestamp', 'DateTime', 'From', 'To', 'ContractAddress',
@@ -71,7 +77,7 @@ header_list = ['Txhash', 'Blockno', 'UnixTimestamp', 'DateTime', 'From', 'To', '
 
 header = {k: v for v, k in enumerate(header_list)}
 
-with open(filename, 'r') as csvfile:
+with open(f'./csv_exports/{filename}', 'r') as csvfile:
     datareader = csv.reader(csvfile)
 
     total_price = 0
@@ -132,22 +138,22 @@ block_duration_blk = int(successful_mint[-1][header['Blockno']]) - \
 block_duration_seconds = int(successful_mint[-1][header['UnixTimestamp']]) - \
     int(successful_mint[0][header['UnixTimestamp']])
 
-print("Price each:", round(price_each, 3))
-print("Total transactions:", len(successful_mint) + len(failed_mint))
-print("Total successful transactions:", len(successful_mint))
-print("Total failed transactions", len(failed_mint),
-      "/ Gas lost:", round(gas_loss, 2))
-print("Total free mints:", free_mint)
-print("Duration taken:", block_duration_blk,
-      "Blocks /", format_time(block_duration_seconds))
+printLog("Price each:", round(price_each, 3))
+printLog("Total transactions:", len(successful_mint) + len(failed_mint))
+printLog("Total successful transactions:", len(successful_mint))
+printLog("Total failed transactions", len(failed_mint),
+         "/ Gas lost:", round(gas_loss, 2))
+printLog("Total free mints:", free_mint)
+printLog("Duration taken:", block_duration_blk,
+         "Blocks /", format_time(block_duration_seconds))
 
 total_minted = free_mint
 total_minted_local = 0
 base_cost_list = []
 gas_cost_list = []
 block_dict = {}
-print('-------------------------')
-print('Successful mint analysis')
+printLog('-------------------------')
+printLog('Successful mint analysis')
 
 for mint in successful_mint:
 
@@ -176,27 +182,27 @@ for mint in successful_mint:
     else:
         block_dict[mint[header['Blockno']]].append(mint)
 
-print("Total minted in public:", total_minted)
+printLog("Total minted in public:", total_minted)
 
-print('-------------\nCost analysis (Eth)')
+printLog('-------------\nCost analysis (Eth)')
 getStats(base_cost_list)
 
-print('---------------\nGas Analysis (Gwei)')
+printLog('---------------\nGas Analysis (Gwei)')
 getGasStats(gas_cost_list)
 
-print('--------------------\nBlock Analysis')
-print("Total blocks:", len(block_dict))
+printLog('--------------------\nBlock Analysis')
+printLog("Total blocks:", len(block_dict))
 
 if analyze_all_blocks == True:
     for block in block_dict:
-        print(block)
+        printLog(block)
         getGasStats(getCost(block_dict[block]))
-        print('---------------')
+        printLog('---------------')
 else:
     block_dict_list = list(block_dict)
-    print(block_dict_list[0])
+    printLog(block_dict_list[0])
     getGasStats(getCost(block_dict[block_dict_list[0]]))
-    print('---------------')
-    print(block_dict_list[-1])
+    printLog('---------------')
+    printLog(block_dict_list[-1])
     getGasStats(getCost(block_dict[block_dict_list[-1]]))
-    print('---------------')
+    printLog('---------------')
